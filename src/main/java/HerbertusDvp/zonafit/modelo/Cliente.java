@@ -21,13 +21,13 @@ public class Cliente {
     private String apellido;
     private Integer membresia;
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", membresia=" + membresia +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Cliente{" +
+//                "id=" + id +
+//                ", nombre='" + nombre + '\'' +
+//                ", apellido='" + apellido + '\'' +
+//                ", membresia=" + membresia +
+//                '}';
+//    }
 }

@@ -85,10 +85,60 @@ public class ZonafitApplication implements CommandLineRunner {
 				logger.info("Ingresa Apellido: ");
 				var apellido = consola.nextLine();
 				logger.info("Ingresa Membresia: ");
-				var membresia = consola.nextInt();
+				var membresia = Integer.parseInt(consola.nextLine());
 				Cliente cliente = new Cliente();
 
+				cliente.setNombre(nombre);
+				cliente.setApellido(apellido);
+				cliente.setMembresia(membresia);
+				clienteServicio.guardarCliente(cliente);
+
+				logger.info("Cliente agregado: "+cliente);
+
 			}
+			case 4->{
+				logger.info(nl+"++ Modificar cliente"+nl);
+				logger.info("Ingresa el id del cliente: ");
+
+				var idCliente = Integer.parseInt(consola.nextLine());
+				Cliente cliente = clienteServicio.buscarClientePorId(idCliente);
+
+				if (cliente != null){
+					logger.info("Nombre: ");
+					var nombre = consola.nextLine();
+					logger.info("Apellido: ");
+					var apellido = consola.nextLine();
+					logger.info("Membresia: ");
+					var membresia = Integer.parseInt(consola.nextLine());
+
+					cliente.setNombre(nombre);
+					cliente.setApellido(apellido);
+					cliente.setMembresia(membresia);
+
+					clienteServicio.guardarCliente(cliente);
+
+					logger.info("Cliente modificado: "+ cliente);
+				}else {
+					logger.info("CLiente no encontrado: "+ cliente);
+				}
+			}
+			case 5->{
+				logger.info(nl+"++ Eliminar cliente ++"+nl);
+				logger.info("Ingresa el id del cliente: ");
+				var idCliente = Integer.parseInt(consola.nextLine());
+				var cliente = clienteServicio.buscarClientePorId(idCliente);
+
+				if (cliente != null){
+					clienteServicio.eliminarCliente(cliente);
+					logger.info("Cliente eliminado: "+cliente);
+				}else
+					logger.info("Cliente no encontrado: "+cliente+nl);
+			}
+			case 6->{
+				logger.info("Hasta pronto..");
+				salir = true;
+			}
+			default -> logger.info(nl+"Opcion no existe.."+nl);
 		}
 		return salir;
 	}
